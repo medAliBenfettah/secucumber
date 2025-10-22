@@ -1,0 +1,39 @@
+------------------ project structure ------------------
+
+test_automation_project/
+│
+├── features/
+│   ├── login.feature
+│   ├── environment.py
+│   └── steps/
+│       └── login_steps.py
+│
+├── pages/
+│   ├── base_page.py
+│   ├── login_page.py
+│   └── home_page.py
+│
+├── tests/
+│   └── behave.ini
+│
+├── reports/
+│   └── allure-results/
+│
+├── utils/
+│   ├── driver_factory.py
+│   └── config.py
+│
+├── requirements.txt
+└── README.md
+
+------------------ Process of the execution ------------------
+
+.feature file (Gherkin) 
+    ↓
+step_definitions (Python code that reads Gherkin)
+    ↓
+Page Objects (encapsulated page interactions)
+    ↓
+Selenium (browser automation)
+    ↓
+Test Results → Allure → Beautiful Report
