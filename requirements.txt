@@ -1,0 +1,5 @@
+allure-behave
+allure-pytest
+selenium
+pytest
+pytest-bdd
