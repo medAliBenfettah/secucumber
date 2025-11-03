@@ -3,7 +3,7 @@ Feature: OrangeHRM Login functionality
     I want to be able to log in to the application
     So that I can access my account and use the features provided by the application.
 
-    Background: User in the login page
+    Background: User on the login page
         Given I am on the OrangeHRM login page
 
     @smoke @positive
@@ -12,24 +12,24 @@ Feature: OrangeHRM Login functionality
         And I enter valid password "admin123"
         And I click on the login button
         Then I should be redirected to the dashboard page
-        And I should see the dropdown in the header 
+        And I should see the dropdown in the header
 
     @negative
     Scenario: Failed login with invalid username
         When I enter invalid username "invalidUsername"
         And I enter valid password "admin123"
-        And II click on the login button
-        Then I should see and error message "Invalid credentials"
+        And I click on the login button
+        Then I should see an error message "Invalid credentials"
 
     @negative
     Scenario: Failed login with invalid password
-        When  I enter valid username "admn"
+        When I enter valid username "admin"
         And I enter invalid password "invalidPassword"
         And I click on the login button
-        Then I should see and error message "Invalid credentials"
+        Then I should see an error message "Invalid credentials"
 
     @negative
-    Scenario: Failed login with empty crendentials
+    Scenario: Failed login with empty credentials
         When I leave the username field empty
         And I leave the password field empty
         And I click on the login button
@@ -40,7 +40,7 @@ Feature: OrangeHRM Login functionality
         When I enter username '<username>'
         And I enter password '<password>'
         And I click on the login button
-        Then I should see and error message 
+        Then I should see an error message
 
         Examples:
             | username        | password        |
