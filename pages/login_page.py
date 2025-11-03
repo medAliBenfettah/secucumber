@@ -68,6 +68,13 @@ class LoginPage(BasePage):
     def wait_for_page_to_load(self) -> None:
         # Wait once for the login logo to appear
         self.is_element_visible(self.LOGIN_LOGO, timeout=10)
+
+    def get_error_message_text(self) -> str:
+        """Return the visible error message text on the login page."""
+        try:
+            return self.get_element_text(self.ERROR_MESSAGE)
+        except Exception:
+            return ""
     
     
         

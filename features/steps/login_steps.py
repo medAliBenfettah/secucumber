@@ -153,6 +153,59 @@ def step_impl_enter_password(context, password):
     context.login_page.enter_password(password)
 
 
+# ---- Additional step aliases to handle typos / alternate phrasing from feature files ----
+
+
+@when('I enter invalid username "{username}"')
+def step_impl_enter_invalid_username(context, username):
+    """Alias to support steps that use the word 'invalid' explicitly."""
+    context.login_page.enter_username(username)
+
+
+@when('I enter invalid password "{password}"')
+def step_impl_enter_invalid_password(context, password):
+    """Alias to support steps that use the word 'invalid' explicitly."""
+    context.login_page.enter_password(password)
+
+
+@when('II click on the login button')
+def step_impl_click_login_typo(context):
+    """Handle typo in feature file where 'I' was typed twice."""
+    context.login_page.click_login_button()
+
+
+@then('I should see and error message "{expected_text}"')
+def step_impl_verify_error_message_typo(context, expected_text):
+    """Handle typo 'and' instead of 'an' in feature file and verify error text."""
+    actual_message = context.login_page.get_error_message_text()
+    assert expected_text.lower() in actual_message.lower(), (
+        f"Expected '{expected_text}' in error message, but got '{actual_message}'"
+    )
+
+
+# Accept single-quoted parameter variants from Scenario Outline examples
+@when("I enter username '{username}'")
+def step_impl_enter_username_single_quote(context, username):
+    context.login_page.enter_username(username)
+
+
+@when("I enter password '{password}'")
+def step_impl_enter_password_single_quote(context, password):
+    context.login_page.enter_password(password)
+
+
+@when('I leave the username field empty')
+def step_impl_leave_username_field_empty(context):
+    # Keep consistent behavior: do nothing so field remains empty
+    pass
+
+
+@when('I leave the password field empty')
+def step_impl_leave_password_field_empty(context):
+    # Keep consistent behavior: do nothing so field remains empty
+    pass
+
+
 @when('I click on the login button')
 def step_impl_click_login(context):
     """Click the login button"""
