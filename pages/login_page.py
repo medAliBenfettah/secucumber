@@ -6,11 +6,12 @@ import allure
 
 class LoginPage(BasePage):
     #----------------------------------- LOCATORS -----------------------------------#
-    USERNAME_INPUT = (By.ID, "username")
-    PASSWORD_INPUT = (By.ID, "password")
+    # The login form uses `name` attributes for inputs
+    USERNAME_INPUT = (By.NAME, "username")
+    PASSWORD_INPUT = (By.NAME, "password")
     LOGIN_BUTTON = (By.XPATH, "//button[@type='submit']")
     ERROR_MESSAGE = (By.XPATH, "//p[@class='oxd-text oxd-text--p oxd-alert-content-text']")
-    FORGET_PASSWORD_LINK = (By.XPATH, "//p[@class='oxd-text oxd-text--p orangehrm-login-forgot-header']")
+    FORGOT_PASSWORD_LINK = (By.XPATH, "//p[@class='oxd-text oxd-text--p orangehrm-login-forgot-header']")
     LOGIN_LOGO = (By.XPATH, "//div[@class='orangehrm-login-logo']/img")
     
     #-------------------------- Dashboard header locator to verify successful login -------------------------- #
@@ -36,8 +37,8 @@ class LoginPage(BasePage):
         self.enter_text(self.PASSWORD_INPUT, password, "password Input")
         return self
     
-    @allure.step("Click on login button {LOGIN_BUTTON}")   
-    def click_login_button(self) -> None:     
+    @allure.step("Click on login button")
+    def click_login_button(self) -> None:
         self.click(self.LOGIN_BUTTON, "login Button")
         
     @allure.step("Login with username: {username} and password: {password}")
@@ -47,9 +48,9 @@ class LoginPage(BasePage):
         self.click_login_button()
         return self
     
-    @allure.step("Click on Forget Password link")
-    def click_forget_password_link(self) -> None:
-        self.click(self.FORGET_PASSWORD_LINK, "Forget Password Link")
+    @allure.step("Click on Forgot Password link")
+    def click_forgot_password(self) -> None:
+        self.click(self.FORGOT_PASSWORD_LINK, "Forgot Password Link")
 
     def is_login_page_displayed(self) -> bool:
         return self.is_element_visible(self.LOGIN_LOGO)
@@ -63,9 +64,9 @@ class LoginPage(BasePage):
     def is_user_dropdown_displayed(self) -> bool:
         return self.is_element_visible(self.USER_DROPDOWN, timeout=5)
     
-    allure.step("Watch for the page to load")
+    @allure.step("Watch for the page to load")
     def wait_for_page_to_load(self) -> None:
-        self.is_element_visible(self.LOGIN_LOGO, timeout=10)
+        # Wait once for the login logo to appear
         self.is_element_visible(self.LOGIN_LOGO, timeout=10)
     
     
