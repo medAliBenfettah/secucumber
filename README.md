@@ -79,13 +79,6 @@ A workflow is provided at `.github/workflows/behave.yml`. It runs on `push` and 
 - Use Page Objects for UI interactions and keep steps thin.
 - Do not commit `allure-results/`, `venv/`, or `__pycache__/` (they are in `.gitignore`).
 
-## Contributing
-- Create a feature branch: `git checkout -b feat/your-change`
-- Make changes and run tests locally
-- Push branch and open a PR targeting `main`
-
-If you want, I can add a short CONTRIBUTING.md with test/PR checklist.
-
 ## Troubleshooting
 - If step definitions aren't found, check that the step text in the `.feature` matches the decorator string exactly.
 - If the editor doesn't resolve imports (yellow highlights), make sure VS Code is using the project venv (`.\venv\Scripts\python.exe`) as the interpreter and restart the language server.
